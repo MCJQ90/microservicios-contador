@@ -8,6 +8,27 @@
             "mainClass": "com.contador.eureka_server.EurekaServerApplication",
             "projectName": "eureka-server",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57452 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=eureka-server"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MsvcAsignacionesApplication<msvc-asignaciones>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.contador.msvc_asignaciones.MsvcAsignacionesApplication",
+            "projectName": "msvc-asignaciones",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MsvcSolicitudApplication<msvc-solicitud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.contador.msvc_solicitud.MsvcSolicitudApplication",
+            "projectName": "msvc-solicitud",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]
