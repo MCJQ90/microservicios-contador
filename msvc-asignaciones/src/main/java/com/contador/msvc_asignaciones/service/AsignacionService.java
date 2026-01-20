@@ -16,23 +16,18 @@ public class AsignacionService {
         this.repository = repository;
     }
 
-    // Listar todas las asignaciones
     public List<Asignacion> listar() {
         return repository.findAll();
     }
 
-    // Crear una nueva asignación
     public Asignacion crear(Asignacion asignacion) {
-
         if (asignacion.getEstado() == null || asignacion.getEstado().isBlank()) {
             asignacion.setEstado("ASIGNADA");
         }
-
         return repository.save(asignacion);
     }
 
-    // Obtener asignación por id
-    public Optional<Asignacion> obtenerPorId(Long id) {
+    public Optional<Asignacion> obtenerPorId(String id) {
         return repository.findById(id);
     }
 }

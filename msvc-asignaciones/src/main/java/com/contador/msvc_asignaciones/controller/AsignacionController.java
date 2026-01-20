@@ -18,21 +18,18 @@ public class AsignacionController {
         this.service = service;
     }
 
-    // 1️⃣ Listar todas las asignaciones
     @GetMapping
     public List<Asignacion> listar() {
         return service.listar();
     }
 
-    // 2️⃣ Crear una asignación
     @PostMapping
     public Asignacion crear(@RequestBody Asignacion asignacion) {
         return service.crear(asignacion);
     }
 
-    // 3️⃣ Obtener asignación por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Asignacion> obtener(@PathVariable Long id) {
+    public ResponseEntity<Asignacion> obtener(@PathVariable String id) {
         return service.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
