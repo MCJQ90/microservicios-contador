@@ -1,9 +1,4 @@
-server:
-  port: 8080
-
 spring:
-  application:
-    name: gateway
   cloud:
     gateway:
       routes:
@@ -15,8 +10,3 @@ spring:
           uri: lb://msvc-asignaciones
           predicates:
             - Path=/asignaciones/**
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
