@@ -8,11 +8,11 @@ spring:
     gateway:
       routes:
         - id: msvc-solicitud
-          uri: lb://MSVC-SOLICITUD
+          uri: lb://msvc-solicitud
           predicates:
             - Path=/solicitudes/**
         - id: msvc-asignaciones
-          uri: lb://MSVC-ASIGNACIONES
+          uri: lb://msvc-asignaciones
           predicates:
             - Path=/asignaciones/**
 
