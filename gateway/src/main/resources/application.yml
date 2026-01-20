@@ -1,12 +1,14 @@
 spring:
   cloud:
     gateway:
-      routes:
-        - id: msvc-solicitud
-          uri: lb://msvc-solicitud
-          predicates:
-            - Path=/solicitudes/**
-        - id: msvc-asignaciones
-          uri: lb://msvc-asignaciones
-          predicates:
-            - Path=/asignaciones/**
+      server:
+        webflux:
+          routes:
+            - id: msvc-solicitud
+              uri: lb://msvc-solicitud
+              predicates:
+                - Path=/solicitudes/**
+            - id: msvc-asignaciones
+              uri: lb://msvc-asignaciones
+              predicates:
+                - Path=/asignaciones/**
