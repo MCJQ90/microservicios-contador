@@ -1,7 +1,7 @@
 package com.contador.msvc_solicitud.controller;
 
 import com.contador.msvc_solicitud.models.entities.Solicitud;
-import com.contador.msvc_solicitud.repository.SolicitudRepository;
+import com.contador.msvc_solicitud.service.SolicitudService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,32 +11,25 @@ import java.util.List;
 @RequestMapping("/solicitudes")
 public class SolicitudController {
 
-    private final SolicitudRepository solicitudRepository;
+    private final SolicitudService service;
 
-    public SolicitudController(SolicitudRepository solicitudRepository) {
-        this.solicitudRepository = solicitudRepository;
+    public SolicitudController(SolicitudService service) {
+        this.service = service;
     }
 
-    // 1) Listar
     @GetMapping
     public List<Solicitud> listar() {
-        return solicitudRepository.findAll();
+        return service.listar();
     }
 
-    // 2) Crear
     @PostMapping
     public Solicitud crear(@RequestBody Solicitud solicitud) {
-        // por defecto, si no envían estado
-        if (solicitud.getEstado() == null || solicitud.getEstado().isBlank()) {
-            solicitud.setEstado("ENVIADA");
-        }
-        return solicitudRepository.save(solicitud);
+        return service.crear(solicitud);
     }
 
-    // 3) Obtener por id
     @GetMapping("/{id}")
     public ResponseEntity<Solicitud> obtener(@PathVariable Long id) {
-        return solicitudRepository.findById(id)
+        return service.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
