@@ -2,6 +2,8 @@ package com.contador.msvc_solicitud.models.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Transient;
+
 
 @Document(collection = "solicitudes")
 public class Solicitud {
@@ -42,5 +44,14 @@ public class Solicitud {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Transient
+    private Integer port;
+    public Integer getPort() {
+        return port;
+    }
+    public void setPort(Integer port) {
+        this.port = port;
     }
 }

@@ -2,6 +2,7 @@ package com.contador.msvc_asignaciones.models.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Transient;
 
 import java.time.LocalDateTime;
 
@@ -58,5 +59,14 @@ public class Asignacion {
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    @Transient
+    private Integer port;
+    public Integer getPort() {
+        return port;
+    }
+    public void setPort(Integer port) {
+        this.port = port;
     }
 }

@@ -4,6 +4,7 @@ import com.contador.msvc_solicitud.models.entities.Solicitud;
 import com.contador.msvc_solicitud.service.SolicitudService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.core.env.Environment;
 
 import java.util.List;
 
@@ -13,13 +14,21 @@ public class SolicitudController {
 
     private final SolicitudService service;
 
-    public SolicitudController(SolicitudService service) {
+    private final Environment env;
+    public SolicitudController(SolicitudService service, Environment env) {
         this.service = service;
+        this.env = env;
     }
 
     @GetMapping
     public List<Solicitud> listar() {
-        return service.listar();
+        List<Solicitud> solicitudes = service.listar();
+
+        solicitudes.forEach(s ->
+        s.setPort(Integer.parseInt(env.getProperty("local.server.port")))
+    );
+
+    return solicitudes;
     }
 
     @PostMapping

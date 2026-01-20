@@ -5,6 +5,7 @@ import com.contador.msvc_asignaciones.models.entities.Asignacion;
 import com.contador.msvc_asignaciones.service.AsignacionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.core.env.Environment;
 
 import java.util.List;
 
@@ -14,14 +15,22 @@ public class AsignacionController {
 
     private final AsignacionService service;
 
-    public AsignacionController(AsignacionService service) {
+    private final Environment env;
+    public AsignacionController(AsignacionService service, Environment env) {
         this.service = service;
+        this.env = env;
     }
 
     @GetMapping
     public List<Asignacion> listar() {
-        return service.listar();
-    }
+        List<Asignacion> asignaciones = service.listar();
+
+        asignaciones.forEach(a ->
+        a.setPort(Integer.parseInt(env.getProperty("local.server.port")))
+    );
+
+        return asignaciones;
+}
 
     @PostMapping
     public Asignacion crear(@RequestBody Asignacion asignacion) {
