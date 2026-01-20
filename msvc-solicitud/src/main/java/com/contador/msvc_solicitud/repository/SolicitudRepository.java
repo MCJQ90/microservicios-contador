@@ -1,8 +1,7 @@
 package com.contador.msvc_solicitud.repository;
 
 import com.contador.msvc_solicitud.models.entities.Solicitud;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface SolicitudRepository extends JpaRepository<Solicitud, Long> {
-
+public interface SolicitudRepository extends MongoRepository<Solicitud, String> {
 }

@@ -27,7 +27,7 @@ public class SolicitudService {
         return repository.save(solicitud);
     }
 
-    public Optional<Solicitud> obtenerPorId(Long id) {
+    public Optional<Solicitud> obtenerPorId(String id) {
         return repository.findById(id);
     }
 }

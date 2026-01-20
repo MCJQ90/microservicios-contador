@@ -28,7 +28,7 @@ public class SolicitudController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Solicitud> obtener(@PathVariable Long id) {
+    public ResponseEntity<Solicitud> obtener(@PathVariable String id) {
         return service.obtenerPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

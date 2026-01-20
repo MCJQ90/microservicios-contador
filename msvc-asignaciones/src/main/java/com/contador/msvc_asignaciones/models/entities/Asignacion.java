@@ -1,18 +1,18 @@
 package com.contador.msvc_asignaciones.models.entities;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "asignaciones")
+@Document(collection = "asignaciones")
 public class Asignacion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     // referencia simple a la Solicitud (solo el ID)
-    private Long solicitudId;
+    private String solicitudId;
 
     // ejemplo: "ASISTENTE", "CONTADOR" o el nombre
     private String asignadoA;
@@ -24,17 +24,39 @@ public class Asignacion {
 
     public Asignacion() {}
 
-    public Long getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
-    public Long getSolicitudId() { return solicitudId; }
-    public void setSolicitudId(Long solicitudId) { this.solicitudId = solicitudId; }
+    public String getSolicitudId() {
+        return solicitudId;
+    }
 
-    public String getAsignadoA() { return asignadoA; }
-    public void setAsignadoA(String asignadoA) { this.asignadoA = asignadoA; }
+    public void setSolicitudId(String solicitudId) {
+        this.solicitudId = solicitudId;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public String getAsignadoA() {
+        return asignadoA;
+    }
 
-    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
-    public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
+    public void setAsignadoA(String asignadoA) {
+        this.asignadoA = asignadoA;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
 }

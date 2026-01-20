@@ -1,42 +1,39 @@
 package com.contador.msvc_solicitud.models.entities;
 
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "solicitudes")
+@Document(collection = "solicitudes")
 public class Solicitud {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    private String clienteNombre;
-    private String tipoServicio;
+    private String nombre;
+    private String descripcion;
     private String estado;
 
-    private LocalDateTime fechaCreacion = LocalDateTime.now();
+    public Solicitud() {
+    }
 
-    public Solicitud() {}
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public String getClienteNombre() {
-        return clienteNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setClienteNombre(String clienteNombre) {
-        this.clienteNombre = clienteNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getTipoServicio() {
-        return tipoServicio;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getEstado() {
@@ -45,13 +42,5 @@ public class Solicitud {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 }
