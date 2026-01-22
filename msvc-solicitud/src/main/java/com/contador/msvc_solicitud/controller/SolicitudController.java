@@ -39,7 +39,10 @@ public class SolicitudController {
     @GetMapping("/{id}")
     public ResponseEntity<Solicitud> obtener(@PathVariable String id) {
         return service.obtenerPorId(id)
-                .map(ResponseEntity::ok)
+                .map(s -> {
+                    s.setPort(Integer.parseInt(env.getProperty("local.server.port")));
+                return ResponseEntity.ok(s);
+            })
                 .orElse(ResponseEntity.notFound().build());
     }
 }
