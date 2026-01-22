@@ -43,4 +43,15 @@ public class AsignacionController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    
+    @GetMapping("/{id}/detalle")
+    public ResponseEntity<AsignacionDetalleDTO> detalle(@PathVariable String id) {
+
+        return service.obtenerPorId(id)
+                .map(asignacion -> {
+                SolicitudDTO solicitud = solicitudClient.obtenerSolicitud(asignacion.getSolicitudId());
+                return ResponseEntity.ok(new AsignacionDetalleDTO(asignacion, solicitud));
+            })
+            .orElse(ResponseEntity.notFound().build());
+}
 }
