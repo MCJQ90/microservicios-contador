@@ -35,6 +35,15 @@ GET  /solicitudes/{id}
 Asignaciones
 GET /asignaciones
 
+Comunicación entre microservicios
+El microservicio msvc-asignaciones se comunica con el microservicio msvc-solicitud utilizando Spring Cloud OpenFeign y Eureka para el descubrimiento de servicios.
+Se implementa un endpoint que devuelve información agregada de ambos microservicios:
+GET /asignaciones/{id}/detalle
+Este endpoint retorna:
+- Información de la asignación
+- Información de la solicitud asociada
+- El puerto dinámico de cada microservicio, evidenciando el balanceo y descubrimiento de servicios
+
 Pruebas
 Las pruebas se realizaron usando Postman, accediendo a los microservicios a través del Gateway.
 En las respuestas se incluye el puerto del microservicio para evidenciar el uso de puertos dinámicos y el descubrimiento de servicios con Eureka.
